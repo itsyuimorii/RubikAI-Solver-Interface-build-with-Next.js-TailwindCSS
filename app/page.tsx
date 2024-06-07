@@ -1,7 +1,13 @@
-import Image from "next/image";
+import CameraFeed from '../components/CameraFeed';
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
-    <div>AI</div>
+    <div className="bg-gray-900 text-white min-h-screen flex items-center justify-center">
+      <main className="relative w-full h-full">
+        <CameraFeed modelPath="/models/detection_model/model.json" />
+      </main>
+    </div>
   );
-}
+};
+
+export default Home;
