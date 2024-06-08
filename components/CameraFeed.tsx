@@ -19,7 +19,7 @@ const CameraFeed: React.FC<CameraFeedProps> = ({ modelPath }) => {
   useEffect(() => {
     const setupCamera = async () => {
       const stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: 'environment' }
+video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'environment' }
       });
       videoRef.current!.srcObject = stream;
 
@@ -87,6 +87,7 @@ const CameraFeed: React.FC<CameraFeedProps> = ({ modelPath }) => {
         const text = `${prediction.class} (${Math.round(prediction.score * 100)}%)`;
 
         console.log("Drawing box:", { x, y, width, height, text });
+        console.log(videoRef.current?.videoHeight, videoRef.current?.videoWidth)
 
         // Draw bounding box
         ctx.strokeStyle = '#00FFFF';
