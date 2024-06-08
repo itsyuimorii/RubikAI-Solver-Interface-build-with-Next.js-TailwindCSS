@@ -31,8 +31,10 @@ const CameraFeed: React.FC<CameraFeedProps> = ({ modelPath }) => {
     };
 
     const loadModel = async () => {
+      console.log("Loading model...");
       await setupCamera();
       const model = await tf.loadGraphModel(modelPath);
+      console.log("Model loaded:", model);
       detectFrame(videoRef.current!, model);
     };
 
@@ -42,7 +44,18 @@ const CameraFeed: React.FC<CameraFeedProps> = ({ modelPath }) => {
         return;
       }
 
-      const predictions = await model.executeAsync(tf.browser.fromPixels(video)) as tf.Tensor[];
+      const inputTensor = tf.browser.fromPixels(video).resizeBilinear([640, 640]).expandDims(0).toInt();
+      console.log("Input tensor shape:", inputTensor.shape);
+
+      const predictions = await model.executeAsync({ 'input_tensor': inputTensor }) as tf.Tensor[];
+      console.log("Predictions:", predictions);
+
+      if (predictions.length === 0) {
+        console.log("No predictions made");
+        requestAnimationFrame(() => detectFrame(video, model));
+        return;
+      }
+
       const boxes = await predictions[0].array() as number[][];
       const classes = await predictions[1].array() as string[];
       const scores = await predictions[2].array() as number[];
@@ -53,6 +66,8 @@ const CameraFeed: React.FC<CameraFeedProps> = ({ modelPath }) => {
         score: scores[i]
       })) as Prediction[];
 
+      console.log("Processed predictions:", predictionsArray);
+
       renderPredictions(predictionsArray);
       requestAnimationFrame(() => detectFrame(video, model));
     };
@@ -61,11 +76,17 @@ const CameraFeed: React.FC<CameraFeedProps> = ({ modelPath }) => {
       const ctx = canvasRef.current!.getContext('2d');
       if (!ctx) return;
 
+      console.log("Rendering predictions...");
+
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      ctx.canvas.width = videoRef.current!.videoWidth;
+      ctx.canvas.height = videoRef.current!.videoHeight;
 
       predictions.forEach(prediction => {
         const [x, y, width, height] = prediction.bbox;
         const text = `${prediction.class} (${Math.round(prediction.score * 100)}%)`;
+
+        console.log("Drawing box:", { x, y, width, height, text });
 
         // Draw bounding box
         ctx.strokeStyle = '#00FFFF';
@@ -98,7 +119,7 @@ const CameraFeed: React.FC<CameraFeedProps> = ({ modelPath }) => {
       />
       <canvas
         ref={canvasRef}
-        className="absolute top-0 left-0 w-full h-auto"
+        className="absolute top-0 left-0 w-full h-full"
       />
     </div>
   );
