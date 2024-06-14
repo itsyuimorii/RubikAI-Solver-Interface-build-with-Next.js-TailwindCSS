@@ -19,7 +19,7 @@ const CameraFeed: React.FC<CameraFeedProps> = ({ modelPath }) => {
   useEffect(() => {
     const setupCamera = async () => {
       const stream = await navigator.mediaDevices.getUserMedia({
-video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'environment' }
+        video: { facingMode: 'environment' }
       });
       videoRef.current!.srcObject = stream;
 
@@ -35,25 +35,31 @@ video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'environmen
       await setupCamera();
       const model = await tf.loadGraphModel(modelPath);
       console.log("Model loaded:", model);
-      detectFrame(videoRef.current!, model);
+      await detectFrame(videoRef.current!, model); // Added await here
     };
 
     const detectFrame = async (video: HTMLVideoElement, model: tf.GraphModel) => {
       if (!video.videoWidth || !video.videoHeight) {
-        requestAnimationFrame(() => detectFrame(video, model));
-        return;
+        return new Promise<void>(resolve => {
+          requestAnimationFrame(() => {
+            resolve(detectFrame(video, model));
+          });
+        });
       }
 
-      const inputTensor = tf.browser.fromPixels(video).resizeBilinear([640, 640]).expandDims(0).toInt();
+      const inputTensor = tf.browser.fromPixels(video).toInt().expandDims();
       console.log("Input tensor shape:", inputTensor.shape);
+      console.log(model)
 
-      const predictions = await model.executeAsync({ 'input_tensor': inputTensor }) as tf.Tensor[];
+      const predictions = await model.executeAsync(inputTensor) as tf.Tensor[];
       console.log("Predictions:", predictions);
 
       if (predictions.length === 0) {
-        console.log("No predictions made");
-        requestAnimationFrame(() => detectFrame(video, model));
-        return;
+        return new Promise<void>(resolve => {
+          requestAnimationFrame(() => {
+            resolve(detectFrame(video, model));
+          });
+        });
       }
 
       const boxes = await predictions[0].array() as number[][];
@@ -69,7 +75,11 @@ video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'environmen
       console.log("Processed predictions:", predictionsArray);
 
       renderPredictions(predictionsArray);
-      requestAnimationFrame(() => detectFrame(video, model));
+      return new Promise<void>(resolve => {
+        requestAnimationFrame(() => {
+          resolve(detectFrame(video, model));
+        });
+      });
     };
 
     const renderPredictions = (predictions: Prediction[]) => {
@@ -87,7 +97,6 @@ video: { width: { ideal: 1280 }, height: { ideal: 720 }, facingMode: 'environmen
         const text = `${prediction.class} (${Math.round(prediction.score * 100)}%)`;
 
         console.log("Drawing box:", { x, y, width, height, text });
-        console.log(videoRef.current?.videoHeight, videoRef.current?.videoWidth)
 
         // Draw bounding box
         ctx.strokeStyle = '#00FFFF';

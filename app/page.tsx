@@ -4,7 +4,7 @@ const Home: React.FC = () => {
   return (
     <div className="bg-gray-900 text-white min-h-screen flex items-center justify-center">
       <main className="relative w-full h-full">
-        <CameraFeed modelPath="/models/detection_model/model.json" />
+        <CameraFeed modelPath="/models/tfjs_wizard/model.json" />
       </main>
     </div>
   );
