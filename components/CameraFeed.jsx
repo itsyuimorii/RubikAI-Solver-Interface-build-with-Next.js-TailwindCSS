@@ -2,61 +2,65 @@
 import React, { useRef, useEffect } from 'react';
 import * as tf from '@tensorflow/tfjs';
 
-const category_index = {
+const categoryIndex = {
   1: {
-    'id': 1,
-    'name': 'face'
+    id: 1,
+    name: 'face',
+    font_color: "#FFFFFF",
+    box_color: "#000000",
   },
   2: {
-    'id': 2,
-    'name': 'red_tile'
+    id: 2,
+    name: 'red_tile',
+    font_color: "#000000",
+    box_color: "#FF0000",
   },
   3: {
-    'id': 3,
-    'name': 'white_tile'
+    id: 3,
+    name: 'white_tile',
+    font_color: "#000000",
+    box_color: "#FFFFFF",
   },
   4: {
-    'id': 4,
-    'name': 'blue_tile'
+    id: 4,
+    name: 'blue_tile',
+    font_color: "#000000",
+    box_color: "#0000FF",
   },
   5: {
-    'id': 5,
-    'name': 'orange_tile'
+    id: 5,
+    name: 'orange_tile',
+    font_color: "#000000",
+    box_color: "#FFA500",
   },
   6: {
-    'id': 6,
-    'name': 'green_tile'
+    id: 6,
+    name: 'green_tile',
+    font_color: "#000000",
+    box_color: "#00FF00",
   },
   7: {
-    'id': 7,
-    'name': 'yellow_tile'
+    id: 7,
+    name: 'yellow_tile',
+    font_color: "#000000",
+    box_color: "#FFFF00",
   }
 };
 
-interface CameraFeedProps {
-  modelPath: string;
-}
-
-interface Prediction {
-  bbox: [number, number, number, number]; // [x, y, width, height]
-  class: string;
-  score: number;
-}
-
-const CameraFeed: React.FC<CameraFeedProps> = ({ modelPath }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+const CameraFeed = ({ modelPath }) => {
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     const setupCamera = async () => {
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: 'environment' }
       });
-      videoRef.current!.srcObject = stream;
+      videoRef.current.srcObject = stream;
 
-      return new Promise<HTMLVideoElement>((resolve) => {
-        videoRef.current!.onloadedmetadata = () => {
-          resolve(videoRef.current!);
+      return new Promise(resolve => {
+        videoRef.current.onloadedmetadata = () => {
+          resolve(videoRef.current);
         };
       });
     };
@@ -66,28 +70,28 @@ const CameraFeed: React.FC<CameraFeedProps> = ({ modelPath }) => {
       await setupCamera();
       const model = await tf.loadGraphModel(modelPath);
       console.log("Model loaded:", model);
-      await detectFrame(videoRef.current!, model); // Added await here
+      await detectFrame(videoRef.current, model); // Added await here
     };
 
-    const detectFrame = async (video: HTMLVideoElement, model: tf.GraphModel) => {
+    const detectFrame = async (video, model) => {
       if (!video.videoWidth || !video.videoHeight) {
-        return new Promise<void>(resolve => {
+        return new Promise(resolve => {
           requestAnimationFrame(() => {
             resolve(detectFrame(video, model));
           });
         });
       }
-      const model_height = 640
-      const model_width = 640
+      const modelHeight = 640;
+      const modelWidth = 640;
       const inputTensor = tf.browser.fromPixels(video)
-        .resizeBilinear([model_height, model_width])
+        .resizeBilinear([modelHeight, modelWidth])
         .toInt()
         .expandDims();
 
-      const predictions = await model.executeAsync(inputTensor) as tf.Tensor[];
+      const predictions = await model.executeAsync(inputTensor);
 
       if (predictions.length === 0) {
-        return new Promise<void>(resolve => {
+        return new Promise(resolve => {
           requestAnimationFrame(() => {
             resolve(detectFrame(video, model));
           });
@@ -95,63 +99,68 @@ const CameraFeed: React.FC<CameraFeedProps> = ({ modelPath }) => {
       }
 
       // Extract predictions from tensors
-      const boxes = await predictions[3].array() as number[][];
-      const classes = await predictions[0].array() as number[];
-      const scores = await predictions[4].array() as number[];
+      const boxes = await predictions[3].array();
+      const classes = await predictions[0].array();
+      const scores = await predictions[4].array();
 
       // Assuming only one batch, otherwise iterate over batches
       console.assert(boxes.length === 1);
 
       const predictionsArray = boxes[0].map((box, i) => ({
         bbox: [
-          box[1] * (video.videoWidth / model_width), // Adjust x
-          box[0] * (video.videoHeight / model_height), // Adjust y
-          (box[3] - box[1]) * (video.videoWidth / model_width), // Adjust width
-          (box[2] - box[0]) * (video.videoHeight / model_height) // Adjust height
+          box[1] * (video.videoWidth / modelWidth), // Adjust x
+          box[0] * (video.videoHeight / modelHeight), // Adjust y
+          (box[3] - box[1]) * (video.videoWidth / modelWidth), // Adjust width
+          (box[2] - box[0]) * (video.videoHeight / modelHeight) // Adjust height
         ],
-        class: category_index[classes[0][i]].name,
+        class: categoryIndex[classes[0][i]].name,
+        box_color: categoryIndex[classes[0][i]].box_color,
+        font_color: categoryIndex[classes[0][i]].font_color,
         score: scores[0][i]
-      })) as Prediction[];
+      }));
 
       renderPredictions(predictionsArray);
-      return new Promise<void>(resolve => {
+      return new Promise(resolve => {
         requestAnimationFrame(() => {
           resolve(detectFrame(video, model));
         });
       });
     };
 
-    const renderPredictions = (predictions: Prediction[]) => {
-      const ctx = canvasRef.current!.getContext('2d');
+    const renderPredictions = (predictions) => {
+      const ctx = canvasRef.current.getContext('2d');
       if (!ctx) return;
 
-      ctx.canvas.width = videoRef.current!.videoWidth;
-      ctx.canvas.height = videoRef.current!.videoHeight;
+      ctx.canvas.width = videoRef.current.videoWidth;
+      ctx.canvas.height = videoRef.current.videoHeight;
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      ctx.strokeStyle = '#FFFFFF';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(0, 0, videoRef.current!.videoWidth, videoRef.current!.videoHeight);
 
       predictions.forEach(prediction => {
-        if (prediction.score < 0.8) {
+        if (prediction.score < 0.7) {
           return;
         }
 
         const [x, y, width, height] = prediction.bbox;
-        const text = `${prediction.class} (${Math.round(prediction.score * 100)}%)`;
 
-        ctx.strokeStyle = '#00FFFF';
+        ctx.strokeStyle = prediction.box_color;
         ctx.lineWidth = 2;
         ctx.strokeRect(x, y, width, height);
 
-        ctx.fillStyle = '#00FFFF';
-        const textWidth = ctx.measureText(text).width;
-        const textHeight = 16; // Assuming font size of 16px
-        ctx.fillRect(x, y - textHeight, textWidth + 4, textHeight);
-
-        ctx.fillStyle = '#000000';
-        ctx.font = '16px Arial';
-        ctx.fillText(text, x, y - 4);
+        ctx.font = '8px Arial';
+        ctx.fillStyle = prediction.box_color;
+        const textHeight = 8;
+        let text = "";
+        let textBoxY = 0;
+        if (prediction.class === "face") {
+          text = `${prediction.class} (${Math.round(prediction.score * 100)}%)`;
+          textBoxY = y - textHeight;
+        } else {
+          text = `${Math.round(prediction.score * 100)}%`;
+          textBoxY = y;
+        }
+        ctx.fillRect(x, textBoxY, width, textHeight);
+        ctx.fillStyle = prediction.font_color;
+        ctx.fillText(text, x, textBoxY + textHeight);
       });
     };
 
