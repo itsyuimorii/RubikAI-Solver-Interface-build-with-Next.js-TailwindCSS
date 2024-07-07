@@ -133,7 +133,7 @@ const CameraFeed = ({ modelPath }) => {
       predictions.forEach(prediction => {
         if (prediction.score < 0.85) {
           return;
-        }w
+        }
 
         const [x, y, width, height] = prediction.bbox;
 

@@ -10,6 +10,8 @@ export default function Model() {
 
     useFrame(() => {
         cube.current.rotation.x += 0.02
+        cube.current.rotation.y += 0.02
+        cube.current.rotation.z += 0.02
     })
 
     const materialProps = useControls({
@@ -22,9 +24,9 @@ export default function Model() {
     })
 
     return (
-        <group scale={viewport.width / 3.75} >
-            <Text position={[0, 0, -1]} fontSize={0.5} color="white" anchorX="center" anchorY="middle">
-                hello world!
+        <group scale={viewport.width / 6} >
+            <Text font={'/fonts/PPNeueMontreal-Bold.otf'} position={[0, 0, -1]} fontSize={0.5} color="white" anchorX="center" anchorY="middle">
+                hello cube!
             </Text>
             <mesh ref={cube} {...nodes.Cube}>
                 <MeshTransmissionMaterial {...materialProps} />

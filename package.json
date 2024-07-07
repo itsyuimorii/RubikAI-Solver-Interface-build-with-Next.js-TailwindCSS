@@ -13,6 +13,7 @@
     "@react-three/fiber": "^8.16.8",
     "@tensorflow/tfjs": "^4.20.0",
     "framer-motion": "^11.2.12",
+    "lenis": "^1.1.6",
     "leva": "^0.9.35",
     "next": "14.2.4",
     "react": "^18",

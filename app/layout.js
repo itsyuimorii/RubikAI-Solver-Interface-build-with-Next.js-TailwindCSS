@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/header";
-import CameraFeed from "@/components/CameraFeed";
+import Header from "@/components/Header";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        {/* <CameraFeed modelPath="/models/web_model/model.json" /> */}
-
+        {/* <Header /> */}
         {children}</body>
     </html>
   );
