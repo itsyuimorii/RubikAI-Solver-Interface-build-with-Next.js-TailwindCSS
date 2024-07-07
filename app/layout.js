@@ -15,7 +15,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <CameraFeed modelPath="/models/web_model/model.json" />
+        {/* <CameraFeed modelPath="/models/web_model/model.json" /> */}
+
         {children}</body>
     </html>
   );
