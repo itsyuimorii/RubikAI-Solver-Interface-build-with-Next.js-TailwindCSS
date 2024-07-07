@@ -34,3 +34,45 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+let solutionCubeState = [
+  Array(9).fill(‘Orange’),
+  Array(9).fill(‘Blue’),
+  Array(9).fill(‘White’),
+  Array(9).fill(‘Red’),
+  Array(9).fill(‘Yellow’),
+  Array(9).fill(‘Green’),
+];
+
+[
+    [‘Orange’, ‘Orange’, ‘Orange’, ‘Orange’, ‘Orange’, ‘Orange’, ‘Orange’, ‘Orange’, ‘Orange’],
+    [‘Blue’, ‘Blue’, ‘Blue’, ‘Blue’, ‘Blue’, ‘Blue’, ‘Blue’, ‘Blue’, ‘Blue’],
+    [‘White’, ‘White’, ‘White’, ‘White’, ‘White’, ‘White’, ‘White’, ‘White’, ‘White’],
+    [‘Red’, ‘Red’, ‘Red’, ‘Red’, ‘Red’, ‘Red’, ‘Red’, ‘Red’, ‘Red’],
+    [‘Yellow’, ‘Yellow’, ‘Yellow’, ‘Yellow’, ‘Yellow’, ‘Yellow’, ‘Yellow’, ‘Yellow’, ‘Yellow’],
+    [‘Green’, ‘Green’, ‘Green’, ‘Green’, ‘Green’, ‘Green’, ‘Green’, ‘Green’, ‘Green’],
+]
+
+
+
+
+var stateMapping = {
+  0: {
+        0: [2, 2],　//white
+        1: null,
+        2: null,
+        3: [5, 6], // green     
+        4: [0, 0], //orange 
+        5: null,
+  },
+  ...
+  26: {      
+        0: null,
+        1: [4, 8],
+        2: [1, 8],
+        3: null,      
+        4: null,
+        5: [3, 6],
+  }
+}
