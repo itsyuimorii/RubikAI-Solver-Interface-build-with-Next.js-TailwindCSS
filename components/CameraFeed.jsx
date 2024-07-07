@@ -81,12 +81,7 @@ const CameraFeed = ({ modelPath }) => {
           });
         });
       }
-      const modelHeight = 640;
-      const modelWidth = 640;
-      const inputTensor = tf.browser.fromPixels(video)
-        .resizeBilinear([modelHeight, modelWidth])
-        .toInt()
-        .expandDims();
+      const inputTensor = tf.browser.fromPixels(video).expandDims();
 
       const predictions = await model.executeAsync(inputTensor);
 
@@ -108,10 +103,10 @@ const CameraFeed = ({ modelPath }) => {
 
       const predictionsArray = boxes[0].map((box, i) => ({
         bbox: [
-          box[1] * (video.videoWidth / modelWidth), // Adjust x
-          box[0] * (video.videoHeight / modelHeight), // Adjust y
-          (box[3] - box[1]) * (video.videoWidth / modelWidth), // Adjust width
-          (box[2] - box[0]) * (video.videoHeight / modelHeight) // Adjust height
+          box[1], // Adjust x
+          box[0], // Adjust y
+          (box[3] - box[1]), // Adjust width
+          (box[2] - box[0]) // Adjust height
         ],
         class: categoryIndex[classes[0][i]].name,
         box_color: categoryIndex[classes[0][i]].box_color,
@@ -136,7 +131,7 @@ const CameraFeed = ({ modelPath }) => {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
       predictions.forEach(prediction => {
-        if (prediction.score < 0.7) {
+        if (prediction.score < 0.85) {
           return;
         }
 
@@ -181,6 +176,6 @@ const CameraFeed = ({ modelPath }) => {
       />
     </div>
   );
-};
+};  
 
 export default CameraFeed;

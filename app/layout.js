@@ -16,7 +16,6 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Header />
         <CameraFeed modelPath="/models/web_model/model.json" />
-
         {children}</body>
     </html>
   );
