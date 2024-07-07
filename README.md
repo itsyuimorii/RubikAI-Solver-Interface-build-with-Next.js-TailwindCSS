@@ -53,9 +53,7 @@ let solutionCubeState = [
     [‘Yellow’, ‘Yellow’, ‘Yellow’, ‘Yellow’, ‘Yellow’, ‘Yellow’, ‘Yellow’, ‘Yellow’, ‘Yellow’],
     [‘Green’, ‘Green’, ‘Green’, ‘Green’, ‘Green’, ‘Green’, ‘Green’, ‘Green’, ‘Green’],
 ]
-
-
-
+   
 
 var stateMapping = {
   0: {
@@ -76,3 +74,11 @@ var stateMapping = {
         5: [3, 6],
   }
 }
+
+### Useful links
+
+https://gltf.pmnd.rs/
+
+https://drei.pmnd.rs/?path=/story/staging-environment--environment-st-1&args=preset:forest
+
+https://gltf.pmnd.rs/
