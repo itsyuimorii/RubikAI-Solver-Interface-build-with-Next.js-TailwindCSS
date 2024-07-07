@@ -101,7 +101,7 @@ const CameraFeed = ({ modelPath }) => {
       // Assuming only one batch, otherwise iterate over batches
       console.assert(boxes.length === 1);
 
-      const predictionsArray = boxes[0].map((box, i) => ({
+      let predictionsArray = boxes[0].map((box, i) => ({
         bbox: [
           box[1], // Adjust x
           box[0], // Adjust y
@@ -113,6 +113,10 @@ const CameraFeed = ({ modelPath }) => {
         font_color: categoryIndex[classes[0][i]].font_color,
         score: scores[0][i]
       }));
+
+      predictionsArray = predictionsArray.filter(prediction => prediction.score > 0.85);
+
+      console.log(predictionsArray);
 
       renderPredictions(predictionsArray);
       return new Promise(resolve => {
@@ -131,10 +135,6 @@ const CameraFeed = ({ modelPath }) => {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
       predictions.forEach(prediction => {
-        if (prediction.score < 0.85) {
-          return;
-        }
-
         const [x, y, width, height] = prediction.bbox;
 
         ctx.strokeStyle = prediction.box_color;
