@@ -25,7 +25,7 @@ export default function ScanCube() {
 
     return (
         <main className="relative h-screen">
-            <div className='bg-black relative flex items-center justify-left h-screen overflow-hidden pl-20'>
+            <div className='bg-black relative flex items-center justify-center h-screen overflow-hidden '>
                 <CameraFeed modelPath="/models/web_model/model.json" />
             </div>
             <div className="absolute top-0 right-0 p-10">
@@ -99,8 +99,8 @@ export default function ScanCube() {
                 </div>
             </div>
 
-            <div className="absolute bottom-0 w-full flex justify-center p-4">
-                <button onClick={handleCapture} className="bg-white py-2 px-4 rounded">Capture</button>
+            <div className="absolute bottom-0 w-full flex justify-center p-40">
+                <button onClick={handleCapture} className="bg-white text-[1vw] uppercase font-ppneue-montreal font-medium py-4 px-14">Click Button to Capture a Cube surface</button>
             </div>
             <Footer />
         </main>
