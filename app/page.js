@@ -28,7 +28,6 @@ export default function Home() {
       <Description />
       <Section />
       <Footer />
-      {/* <CameraFeed modelPath="/models/web_model/model.json" /> */}
     </main>
   );
 }
