@@ -1,7 +1,6 @@
 // import CameraFeed from "@/components/CameraFeed";
 'use client';
 
-import { useState } from 'react';
 import CameraFeed from "@/components/CameraFeed";
 import Footer from '@/components/Footer';
 
@@ -29,52 +28,55 @@ export default function ScanCube() {
                 <CameraFeed modelPath="/models/web_model/model.json" />
             </div>
             <div className="absolute top-0 right-0 p-10">
-                <div className="grid grid-cols-3 gap-4">
-                    <div className="w-20 h-20 grid grid-cols-3 gap-2">
-                        <div className=" bg-white"></div>
-                        <div className=" bg-white"></div>
-                        <div className=" bg-white"></div>
-                        <div className=" bg-white"></div>
-                        <div className=" bg-white"></div>
-                        <div className=" bg-white"></div>
-                        <div className=" bg-white"></div>
-                        <div className=" bg-white"></div>
-                        <div className=" bg-white"></div>
+                <div className="grid grid-cols-4 gap-4">
+                    <div className="grid grid-cols-subgrid gap-4 col-span-4">
+
+                        <div className="w-20 h-20 col-start-2 grid grid-cols-3 gap-2">
+                            <div className=" bg-white"></div>
+                            <div className=" bg-white"></div>
+                            <div className=" bg-white"></div>
+                            <div className=" bg-white"></div>
+                            <div className=" bg-white"></div>
+                            <div className=" bg-white"></div>
+                            <div className=" bg-white"></div>
+                            <div className=" bg-white"></div>
+                            <div className=" bg-white"></div>
+                        </div>
+                    </div>
+                    <div className="w-20  h-20 grid grid-cols-3 gap-2">
+                        <div className=" bg-orange-500"></div>
+                        <div className=" bg-orange-500"></div>
+                        <div className=" bg-orange-500"></div>
+                        <div className=" bg-orange-500"></div>
+                        <div className=" bg-orange-500"></div>
+                        <div className=" bg-orange-500"></div>
+                        <div className=" bg-orange-500"></div>
+                        <div className=" bg-orange-500"></div>
+                        <div className=" bg-orange-500"></div>
+                    </div>
+                    <div className="w-20 h-20   grid grid-cols-3 gap-2">
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
+                    </div>
+                    <div className="w-20 h-20   grid grid-cols-3 gap-2">
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
                     </div>
                     <div className="w-20 h-20 grid grid-cols-3 gap-2">
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                    </div>
-                    <div className="w-20 h-20 grid grid-cols-3 gap-2">
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                    </div>
-                    <div className="w-20 h-20 grid grid-cols-3 gap-2">
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                    </div>
-                    <div className="w-20 h-20 grid grid-cols-3 gap-2">
                         <div className=" bg-green-500"></div>
                         <div className=" bg-green-500"></div>
                         <div className=" bg-green-500"></div>
@@ -85,17 +87,18 @@ export default function ScanCube() {
                         <div className=" bg-green-500"></div>
                         <div className=" bg-green-500"></div>
                     </div>
-                    <div className="w-20 h-20 grid grid-cols-3 gap-2">
-                        <div className=" bg-yellow-500"></div>
-                        <div className=" bg-yellow-500"></div>
-                        <div className=" bg-yellow-500"></div>
-                        <div className=" bg-yellow-500"></div>
-                        <div className=" bg-yellow-500"></div>
-                        <div className=" bg-yellow-500"></div>
-                        <div className=" bg-yellow-500"></div>
-                        <div className=" bg-yellow-500"></div>
-                        <div className=" bg-yellow-500"></div>
-                    </div>
+                    <div className="grid grid-cols-subgrid gap-4 col-span-4">
+                        <div className="w-20 h-20 grid grid-cols-3 col-start-2 gap-2">
+                            <div className=" bg-yellow-500"></div>
+                            <div className=" bg-yellow-500"></div>
+                            <div className=" bg-yellow-500"></div>
+                            <div className=" bg-yellow-500"></div>
+                            <div className=" bg-yellow-500"></div>
+                            <div className=" bg-yellow-500"></div>
+                            <div className=" bg-yellow-500"></div>
+                            <div className=" bg-yellow-500"></div>
+                            <div className=" bg-yellow-500"></div>
+                        </div></div>
                 </div>
             </div>
 
