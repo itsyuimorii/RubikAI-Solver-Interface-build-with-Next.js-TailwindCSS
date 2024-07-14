@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import predictionsReducer from '@components/Store/predictionsSlice';
+import predictionsReducer from './predictionsReducer'; // Ensure this path is correct
 
 const store = configureStore({
     reducer: {

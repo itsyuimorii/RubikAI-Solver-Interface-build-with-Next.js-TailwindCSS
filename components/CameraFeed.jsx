@@ -1,55 +1,23 @@
-'use client'
+'use client';
 import React, { useRef, useEffect } from 'react';
 import * as tf from '@tensorflow/tfjs';
+import { useDispatch } from 'react-redux';
+import { updatePredictions } from '@/store/predictionsReducer';  
 
 const categoryIndex = {
-  1: {
-    id: 1,
-    name: 'face',
-    font_color: "#FFFFFF",
-    box_color: "#000000",
-  },
-  2: {
-    id: 2,
-    name: 'red_tile',
-    font_color: "#000000",
-    box_color: "#FF0000",
-  },
-  3: {
-    id: 3,
-    name: 'white_tile',
-    font_color: "#000000",
-    box_color: "#FFFFFF",
-  },
-  4: {
-    id: 4,
-    name: 'blue_tile',
-    font_color: "#000000",
-    box_color: "#0000FF",
-  },
-  5: {
-    id: 5,
-    name: 'orange_tile',
-    font_color: "#000000",
-    box_color: "#FFA500",
-  },
-  6: {
-    id: 6,
-    name: 'green_tile',
-    font_color: "#000000",
-    box_color: "#00FF00",
-  },
-  7: {
-    id: 7,
-    name: 'yellow_tile',
-    font_color: "#000000",
-    box_color: "#FFFF00",
-  }
+  1: { id: 1, name: 'face', font_color: "#FFFFFF", box_color: "#000000" },
+  2: { id: 2, name: 'red_tile', font_color: "#000000", box_color: "#FF0000" },
+  3: { id: 3, name: 'white_tile', font_color: "#000000", box_color: "#FFFFFF" },
+  4: { id: 4, name: 'blue_tile', font_color: "#000000", box_color: "#0000FF" },
+  5: { id: 5, name: 'orange_tile', font_color: "#000000", box_color: "#FFA500" },
+  6: { id: 6, name: 'green_tile', font_color: "#000000", box_color: "#00FF00" },
+  7: { id: 7, name: 'yellow_tile', font_color: "#000000", box_color: "#FFFF00" },
 };
 
 const CameraFeed = ({ modelPath }) => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const setupCamera = async () => {
@@ -70,7 +38,7 @@ const CameraFeed = ({ modelPath }) => {
       await setupCamera();
       const model = await tf.loadGraphModel(modelPath);
       console.log("Model loaded:", model);
-      await detectFrame(videoRef.current, model); // Added await here
+      await detectFrame(videoRef.current, model);
     };
 
     const detectFrame = async (video, model) => {
@@ -118,6 +86,8 @@ const CameraFeed = ({ modelPath }) => {
 
       console.log(predictionsArray);
 
+      dispatch(updatePredictions(predictionsArray));
+
       renderPredictions(predictionsArray);
       return new Promise(resolve => {
         requestAnimationFrame(() => {
@@ -160,7 +130,7 @@ const CameraFeed = ({ modelPath }) => {
     };
 
     loadModel();
-  }, [modelPath]);
+  }, [modelPath, dispatch]);
 
   return (
     <div className="relative">
@@ -176,6 +146,6 @@ const CameraFeed = ({ modelPath }) => {
       />
     </div>
   );
-};  
+};
 
 export default CameraFeed;
