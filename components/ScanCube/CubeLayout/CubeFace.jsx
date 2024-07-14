@@ -18,16 +18,4 @@ const CubeFace = (props) => {
 export default CubeFace;
 
 
-
-
-    {/* <div className=" bg-white flex justify-center item-center">&nbsp;</div>
-        <div className=" bg-white flex justify-center item-center">&nbsp;</div>
-        <div className=" bg-white flex justify-center item-center">&nbsp;</div>
-        <div className=" bg-white flex justify-center item-center">&nbsp;</div>
-        <div className=" bg-white flex justify-center item-center">&nbsp;</div>
-        <div className=" bg-white flex justify-center item-center">&nbsp;</div>
-        <div className=" bg-white flex justify-center item-center">&nbsp;</div>
-        <div className=" bg-white flex justify-center item-center">&nbsp;</div> */}
- 
- 
  
