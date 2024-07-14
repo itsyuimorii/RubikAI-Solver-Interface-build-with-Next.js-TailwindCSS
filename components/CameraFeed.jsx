@@ -2,7 +2,7 @@
 import React, { useRef, useEffect } from 'react';
 import * as tf from '@tensorflow/tfjs';
 import { useDispatch } from 'react-redux';
-import { updatePredictions } from '@/store/predictionsReducer';  
+import { updatePredictions } from '@/components/Store/predictionsReducer';
 
 const categoryIndex = {
   1: { id: 1, name: 'face', font_color: "#FFFFFF", box_color: "#000000" },
