@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import Lenis from 'lenis'
 import Description from '@/components/Description';
 import Section from '@/components/Section';
-import Footer from "@/components/Footer";
+
 
 export default function Home() {
 
