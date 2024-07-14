@@ -3,7 +3,6 @@ import "./globals.css";
 import { Provider } from 'react-redux';
 import store from '@/components/Store/store';
 
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -18,8 +17,7 @@ export default function RootLayout({ children }) {
         <Provider store={store}>
           {children}
         </Provider>
-
-      </body >
-    </html >
+      </body>
+    </html>
   );
 }
