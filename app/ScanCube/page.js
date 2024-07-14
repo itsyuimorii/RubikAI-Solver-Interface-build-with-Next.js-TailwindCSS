@@ -8,13 +8,32 @@ export default function ScanCube() {
     //make an array of 6 elements, each with 9 null values
 
     const cubeArray = [
-        [null, null, null, null, "white", null, null, null, null],
-        [null, null, null, null, "orange", null, null, null, null],
-        [null, null, null, null, "blue", null, null, null, null],
-        [null, null, null, null, "red", null, null, null, null],
-        [null, null, null, null, "green", null, null, null, null],
-        [null, null, null, null, "yellow", null, null, null, null],
+        [null, null, null, null, "bg-white", null, null, null, null],
+        [null, null, null, null, "bg-orange-500", null, null, null, null],
+        [null, null, null, null, "bg-green-500", null, null, null, null],
+        [null, null, null, null, "bg-red-500", null, null, null, null],
+        [null, null, null, null, "bg-blue-500", null, null, null, null],
+        [null, null, null, null, "bg-yellow-500", null, null, null, null],
     ]
+
+
+
+    arguments
+
+    const renderCubeFaces = () => {
+        return cubeArray.map((face, index) => {
+            //if index is zero I want to wrap this component in a grids-col-subgrid div
+
+
+            return (
+                <div key={index} className="w-20 h-20 grid grid-cols-3 gap-2">
+                    {face.map((color, index) => {
+                        return <div key={index} className={color}></div>
+                    })}
+                </div>
+            )
+        })
+    }
 
     const handleCapture = () => {
         // Assuming the CameraFeed component has a method to capture an image
@@ -27,21 +46,12 @@ export default function ScanCube() {
             <div className='bg-black relative flex items-center justify-center h-screen overflow-hidden '>
                 <CameraFeed modelPath="/models/web_model/model.json" />
             </div>
+            renderCubeFaces()
             <div className="absolute top-0 right-0 p-10">
                 <div className="grid grid-cols-4 gap-4">
                     <div className="grid grid-cols-subgrid gap-4 col-span-4">
 
-                        <div className="w-20 h-20 col-start-2 grid grid-cols-3 gap-2">
-                            <div className=" bg-white"></div>
-                            <div className=" bg-white"></div>
-                            <div className=" bg-white"></div>
-                            <div className=" bg-white"></div>
-                            <div className=" bg-white"></div>
-                            <div className=" bg-white"></div>
-                            <div className=" bg-white"></div>
-                            <div className=" bg-white"></div>
-                            <div className=" bg-white"></div>
-                        </div>
+
                     </div>
                     <div className="w-20  h-20 grid grid-cols-3 gap-2">
                         <div className=" bg-orange-500"></div>
@@ -54,28 +64,6 @@ export default function ScanCube() {
                         <div className=" bg-orange-500"></div>
                         <div className=" bg-orange-500"></div>
                     </div>
-                    <div className="w-20 h-20   grid grid-cols-3 gap-2">
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                    </div>
-                    <div className="w-20 h-20   grid grid-cols-3 gap-2">
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                    </div>
                     <div className="w-20 h-20 grid grid-cols-3 gap-2">
                         <div className=" bg-green-500"></div>
                         <div className=" bg-green-500"></div>
@@ -86,6 +74,28 @@ export default function ScanCube() {
                         <div className=" bg-green-500"></div>
                         <div className=" bg-green-500"></div>
                         <div className=" bg-green-500"></div>
+                    </div>
+                    <div className="w-20 h-20   grid grid-cols-3 gap-2">
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
+                        <div className=" bg-red-500"></div>
+                    </div>
+                    <div className="w-20 h-20   grid grid-cols-3 gap-2">
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
+                        <div className=" bg-blue-500"></div>
                     </div>
                     <div className="grid grid-cols-subgrid gap-4 col-span-4">
                         <div className="w-20 h-20 grid grid-cols-3 col-start-2 gap-2">
