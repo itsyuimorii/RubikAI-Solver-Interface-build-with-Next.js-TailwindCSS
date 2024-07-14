@@ -3,6 +3,7 @@
 
 import CameraFeed from "@/components/CameraFeed";
 import Footer from '@/components/Footer';
+import CubeLayout from '@/components/ScanCube/CubeLayout';
 
 export default function ScanCube() {
     //make an array of 6 elements, each with 9 null values
@@ -17,24 +18,6 @@ export default function ScanCube() {
     ]
 
 
-
-    arguments
-
-    const renderCubeFaces = () => {
-        return cubeArray.map((face, index) => {
-            //if index is zero I want to wrap this component in a grids-col-subgrid div
-
-
-            return (
-                <div key={index} className="w-20 h-20 grid grid-cols-3 gap-2">
-                    {face.map((color, index) => {
-                        return <div key={index} className={color}></div>
-                    })}
-                </div>
-            )
-        })
-    }
-
     const handleCapture = () => {
         // Assuming the CameraFeed component has a method to capture an image
         // const image = captureImageFromCameraFeed();
@@ -46,70 +29,8 @@ export default function ScanCube() {
             <div className='bg-black relative flex items-center justify-center h-screen overflow-hidden '>
                 <CameraFeed modelPath="/models/web_model/model.json" />
             </div>
-            renderCubeFaces()
             <div className="absolute top-0 right-0 p-10">
-                <div className="grid grid-cols-4 gap-4">
-                    <div className="grid grid-cols-subgrid gap-4 col-span-4">
-
-
-                    </div>
-                    <div className="w-20  h-20 grid grid-cols-3 gap-2">
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                        <div className=" bg-orange-500"></div>
-                    </div>
-                    <div className="w-20 h-20 grid grid-cols-3 gap-2">
-                        <div className=" bg-green-500"></div>
-                        <div className=" bg-green-500"></div>
-                        <div className=" bg-green-500"></div>
-                        <div className=" bg-green-500"></div>
-                        <div className=" bg-green-500"></div>
-                        <div className=" bg-green-500"></div>
-                        <div className=" bg-green-500"></div>
-                        <div className=" bg-green-500"></div>
-                        <div className=" bg-green-500"></div>
-                    </div>
-                    <div className="w-20 h-20   grid grid-cols-3 gap-2">
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                        <div className=" bg-red-500"></div>
-                    </div>
-                    <div className="w-20 h-20   grid grid-cols-3 gap-2">
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                        <div className=" bg-blue-500"></div>
-                    </div>
-                    <div className="grid grid-cols-subgrid gap-4 col-span-4">
-                        <div className="w-20 h-20 grid grid-cols-3 col-start-2 gap-2">
-                            <div className=" bg-yellow-500"></div>
-                            <div className=" bg-yellow-500"></div>
-                            <div className=" bg-yellow-500"></div>
-                            <div className=" bg-yellow-500"></div>
-                            <div className=" bg-yellow-500"></div>
-                            <div className=" bg-yellow-500"></div>
-                            <div className=" bg-yellow-500"></div>
-                            <div className=" bg-yellow-500"></div>
-                            <div className=" bg-yellow-500"></div>
-                        </div></div>
-                </div>
+                <CubeLayout cubeArray={cubeArray} />
             </div>
 
             <div className="absolute bottom-0 w-full flex justify-center p-40">
