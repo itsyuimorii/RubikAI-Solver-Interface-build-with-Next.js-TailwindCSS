@@ -20,7 +20,8 @@ const TILES_TO_INDEX = {
 const CENTER_TILE_INDEX = 4
 
 const initialState = {
-    cubeStateArray: [[null, null, null, null, "white_tile", null, null, null, null],
+    cubeStateArray: [
+    [null, null, null, null, "white_tile", null, null, null, null],
     [null, null, null, null, "orange_tile", null, null, null, null],
     [null, null, null, null, "green_tile", null, null, null, null],
     [null, null, null, null, "red_tile", null, null, null, null],
