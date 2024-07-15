@@ -1,18 +1,21 @@
 // import CameraFeed from "@/components/CameraFeed";
 'use client';
 
-import CameraFeed from "@/components/CameraFeed";
 import Footer from '@/components/Footer';
+import CameraFeed from "@/components/CameraFeed";
 import CubeLayout from '@/components/ScanCube/CubeLayout';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCubeFace } from '@/components/Store/cubeStateReducer';
-
 import store from '@/components/Store/store';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ScanCube() {
     //make an array of 6 elements, each with 9 null values
     const { cubeStateArray } = useSelector(state => state.cubeState);
     const dispatch = useDispatch();
+
+    const notify = () => toast("Wow so easy!");
 
     console.log('cubeStateArray', cubeStateArray);
 
@@ -47,12 +50,8 @@ export default function ScanCube() {
         // TODO validate exactly 9 tiles are visible
         newTiles = newTiles.filter(tile => tile.includes('tile'));
         console.log('newTiles', newTiles);
-
         console.log('faces', faces);
-
         console.log('newTiles', newTiles);
-
-
         dispatch(setCubeFace(newTiles));
     };
     return (
@@ -64,9 +63,13 @@ export default function ScanCube() {
                 <CubeLayout cubeArray={cubeStateArray} />
             </div>
 
+
+
             <div className="absolute bottom-0 w-full flex justify-center p-40">
                 <button onClick={handleCapture} className="bg-white text-[1vw] uppercase font-ppneue-montreal font-medium py-4 px-14">Click Button to Capture a Cube surface</button>
+
             </div>
+
             <Footer />
         </main>
     );
