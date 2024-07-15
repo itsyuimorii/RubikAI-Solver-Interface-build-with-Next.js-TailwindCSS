@@ -1,4 +1,8 @@
 // import CameraFeed from "@/components/CameraFeed";
+// TODO: adding instrsuctions to the user
+// 1. Promp info: Flip the cube in the right way.
+// 2. if the face is not right, you can keep the same postion and click the button again.
+// 3. 
 'use client';
 
 import Footer from '@/components/Footer';
@@ -17,7 +21,7 @@ export default function ScanCube() {
 
     const notify = () => toast("Wow so easy!");
 
-    console.log('cubeStateArray', cubeStateArray);
+    // console.log('cubeStateArray', cubeStateArray);
 
     const handleCapture = () => {
         const { predictionsArray } = store.getState().predictions;
