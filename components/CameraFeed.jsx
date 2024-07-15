@@ -34,10 +34,10 @@ const CameraFeed = ({ modelPath }) => {
     };
 
     const loadModel = async () => {
-      console.log("Loading model...");
+      // console.log("Loading model...");
       await setupCamera();
       const model = await tf.loadGraphModel(modelPath);
-      console.log("Model loaded:", model);
+      // console.log("Model loaded:", model);
       await detectFrame(videoRef.current, model);
     };
 
@@ -84,7 +84,7 @@ const CameraFeed = ({ modelPath }) => {
 
       predictionsArray = predictionsArray.filter(prediction => prediction.score > 0.85);
 
-      console.log(predictionsArray);
+      // console.log(predictionsArray);
 
       dispatch(updatePredictions(predictionsArray));
 
