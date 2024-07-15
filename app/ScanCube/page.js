@@ -4,24 +4,32 @@
 import CameraFeed from "@/components/CameraFeed";
 import Footer from '@/components/Footer';
 import CubeLayout from '@/components/ScanCube/CubeLayout';
+import { useSelector } from 'react-redux';
+
+import store from '@/components/Store/store';
 
 export default function ScanCube() {
     //make an array of 6 elements, each with 9 null values
+    const { cubeStateArray } = useSelector(state => state.cubeState);
 
-    const cubeArray = [
-        [null, null, null, null, "bg-white", null, null, null, null],
-        [null, null, null, null, "bg-orange-500", null, null, null, null],
-        [null, null, null, null, "bg-green-500", null, null, null, null],
-        [null, null, null, null, "bg-red-500", null, null, null, null],
-        [null, null, null, null, "bg-blue-500", null, null, null, null],
-        [null, null, null, null, "bg-yellow-500", null, null, null, null],
-    ]
-
+    // console.log('cubeStateArray', cubeStateArray);
 
     const handleCapture = () => {
-        // Assuming the CameraFeed component has a method to capture an image
-        // const image = captureImageFromCameraFeed();
-        // setPhoto1(image);
+        const { predictionsArray } = store.getState().predictions;
+        console.log(predictionsArray);
+
+
+        const marginOfError = 10; // Adjust this margin as needed
+        let sortedPredictionsArray = [...predictionsArray].sort((firstTile, secondTile) => {
+            const yDiff = firstTile.bbox[1] - secondTile.bbox[1];
+            if (Math.abs(yDiff) <= marginOfError) {
+                // If y difference is within the margin of error, compare x
+                return firstTile.bbox[0] - secondTile.bbox[0];
+            }
+            // Otherwise, sort by y
+            return yDiff;
+        });
+        console.log("Click Button To Capture Surface => Sorted", sortedPredictionsArray);
     };
 
     return (
@@ -30,7 +38,7 @@ export default function ScanCube() {
                 <CameraFeed modelPath="/models/web_model/model.json" />
             </div>
             <div className="absolute top-0 right-0 p-10">
-                <CubeLayout cubeArray={cubeArray} />
+                <CubeLayout cubeArray={cubeStateArray} />
             </div>
 
             <div className="absolute bottom-0 w-full flex justify-center p-40">
@@ -41,8 +49,8 @@ export default function ScanCube() {
     );
 }
 
-function captureImageFromCameraFeed() {
-    // Implement this function to capture an image from the CameraFeed component
-    // This is a placeholder for the actual implementation
-    return 'data:image/png;base64,iVBORw0...'; // Return the base64 image data
-}
+// function captureImageFromCameraFeed() {
+//     // Implement this function to capture an image from the CameraFeed component
+//     // This is a placeholder for the actual implementation
+//     return 'data:image/png;base64,iVBORw0...'; // Return the base64 image data
+// }
