@@ -8,12 +8,12 @@ const CubeLayout = (props) => {
                 if (index === 0 || index === 5) {
                     return (
                         <div className="grid grid-cols-subgrid gap-4 col-span-4">
-                            <CubeFace face={face} customClass="col-start-2" />
+                            <CubeFace key={index} face={face} customClass="col-start-2" />
                         </div>
                     )
                 }
                 return (
-                    <CubeFace face={face} />
+                    <CubeFace face={face}    />
                 )
             })}
         </div>
