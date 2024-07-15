@@ -4,19 +4,21 @@
 import CameraFeed from "@/components/CameraFeed";
 import Footer from '@/components/Footer';
 import CubeLayout from '@/components/ScanCube/CubeLayout';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCubeFace } from '@/components/Store/cubeStateReducer';
 
 import store from '@/components/Store/store';
 
 export default function ScanCube() {
     //make an array of 6 elements, each with 9 null values
     const { cubeStateArray } = useSelector(state => state.cubeState);
+    const dispatch = useDispatch();
 
-    // console.log('cubeStateArray', cubeStateArray);
+    console.log('cubeStateArray', cubeStateArray);
 
     const handleCapture = () => {
         const { predictionsArray } = store.getState().predictions;
-        console.log(predictionsArray);
+        // console.log('unsorted', predictionsArray);
 
 
         const marginOfError = 10; // Adjust this margin as needed
@@ -30,8 +32,29 @@ export default function ScanCube() {
             return yDiff;
         });
         console.log("Click Button To Capture Surface => Sorted", sortedPredictionsArray);
-    };
 
+
+        const faceIndex = 0;
+        //TODO validate predictions
+        // 1. ensure only 1 face is visible
+        // 2. ensure that only 9 tiles is visible
+        // 3. (optional all 9 tiles are within the face detetion)
+        let newTiles = sortedPredictionsArray.map(prediction => prediction.class);
+        // TODO there should only be 1 face here
+        const faces = newTiles.filter(tile =>
+            tile.includes('face'));
+
+        // TODO validate exactly 9 tiles are visible
+        newTiles = newTiles.filter(tile => tile.includes('tile'));
+        console.log('newTiles', newTiles);
+
+        console.log('faces', faces);
+
+        console.log('newTiles', newTiles);
+
+
+        dispatch(setCubeFace(newTiles));
+    };
     return (
         <main className="relative h-screen">
             <div className='bg-black relative flex items-center justify-center h-screen overflow-hidden '>
