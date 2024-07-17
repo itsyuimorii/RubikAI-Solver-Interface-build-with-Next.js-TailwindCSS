@@ -28,7 +28,7 @@ export default function ScanCube() {
         // console.log('unsorted', predictionsArray);
 
 
-        const marginOfError = 10; // Adjust this margin as needed
+        const marginOfError = 30; // Adjust this margin as needed
         let sortedPredictionsArray = [...predictionsArray].sort((firstTile, secondTile) => {
             const yDiff = firstTile.bbox[1] - secondTile.bbox[1];
             if (Math.abs(yDiff) <= marginOfError) {
