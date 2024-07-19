@@ -76,7 +76,7 @@ export default function ScanCube() {
                     </div>
 
                 </div>
-                <div className='gap-5'>
+                <div className=''>
                     TODO message to user
                 </div>
                 <div className="w-full flex justify-center p-40">
