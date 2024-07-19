@@ -60,22 +60,35 @@ export default function ScanCube() {
     };
     return (
         <main className="relative h-screen">
-            <div className='bg-black relative flex items-center justify-center h-screen overflow-hidden '>
-                <CameraFeed modelPath="/models/web_model/model.json" />
-            </div>
-            <div className="absolute top-0 right-0 p-10">
-                <CubeLayout cubeArray={cubeStateArray} />
-            </div>
+            <div className='flex flex-col items-center justify-start'>
+
+                <div className='flex flex-row items-start gap-10'>
+                    <div className='bg-black'>
+                        <CameraFeed modelPath="/models/web_model/model.json" />
+                    </div>
+                    <div className='flex flex-col gap-10'>
+                        <div>
+                            <CubeLayout cubeArray={cubeStateArray} />
+                        </div>
+                        <div>
+                            TODO CFOP INSTRUCTIONS HERE
+                        </div>
+                    </div>
+
+                </div>
+                <div className='gap-5'>
+                    TODO message to user
+                </div>
+                <div className="w-full flex justify-center p-40">
+                    <button onClick={handleCapture} className="bg-red-500 text-[1vw] uppercase font-ppneue-montreal font-medium py-4 px-14">Click Button to Capture a Cube surface</button>
+
+                </div>
+            </div >
 
 
-
-            <div className="absolute bottom-0 w-full flex justify-center p-40">
-                <button onClick={handleCapture} className="bg-white text-[1vw] uppercase font-ppneue-montreal font-medium py-4 px-14">Click Button to Capture a Cube surface</button>
-
-            </div>
 
             <Footer />
-        </main>
+        </main >
     );
 }
 
