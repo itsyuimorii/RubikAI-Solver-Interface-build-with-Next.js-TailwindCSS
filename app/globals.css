@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   @font-face {
     font-family: 'PPNeueMontreal';
@@ -51,4 +52,18 @@
     font-weight: 100;
     font-style: normal;
   }
+
+
+@font-face {
+    font-family: 'Avant Garde Book BT';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/fonts/AVGARDD_2.woff') format('woff');
 }
+}
+body{
+    margin: 0px;
+    background-color: #0f0f0f;
+    font-family: 'Avant Garde Book BT';
+}
+

@@ -20,9 +20,9 @@ export default function Home() {
     requestAnimationFrame(raf)
   }, [])
 
-  const Scene = dynamic(() => import('@/components/Scene'), {
-    ssr: false,
-  })
+  // const Scene = dynamic(() => import('@/components/Scene'), {
+  //   ssr: false,
+  // })
 
   return (
     <main className="relative h-screen">
