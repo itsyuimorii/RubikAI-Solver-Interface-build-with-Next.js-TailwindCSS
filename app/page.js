@@ -25,7 +25,7 @@ export default function Home() {
 
   return (
     <main className="relative h-screen">
-      <Scene />
+      {/* <Scene /> */}
       <Description />
       <Section />
       <Footer />
