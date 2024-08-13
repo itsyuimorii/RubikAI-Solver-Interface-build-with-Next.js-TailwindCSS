@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Canvas } from '@react-three/fiber'
- import { Environment } from '@react-three/drei'
+import { Environment } from '@react-three/drei'
 import Model from '@/components/Scene/model';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef } from 'react';
