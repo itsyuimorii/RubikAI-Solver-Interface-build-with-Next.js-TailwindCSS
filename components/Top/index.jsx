@@ -2,7 +2,7 @@
 import styles from './page.module.scss'
 import { useState } from 'react';  
 import { motion } from 'framer-motion';
-import useMousePosition from './utils/useMousePosition';
+import useMousePosition from '../../app/utils/useMousePosition';
 
 export default function Top() {
 

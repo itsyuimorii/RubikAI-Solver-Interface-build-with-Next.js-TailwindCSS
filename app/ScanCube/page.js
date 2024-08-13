@@ -11,7 +11,6 @@ import CubeLayout from '@/components/ScanCube/CubeLayout';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCubeFace } from '@/components/Store/cubeStateReducer';
 import store from '@/components/Store/store';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function ScanCube() {
@@ -19,7 +18,6 @@ export default function ScanCube() {
     const { cubeStateArray } = useSelector(state => state.cubeState);
     const dispatch = useDispatch();
 
-    const notify = () => toast("Wow so easy!");
 
     // console.log('cubeStateArray', cubeStateArray);
 
