@@ -26,7 +26,7 @@ export default function Top() {
       </motion.div>
 
       <div className={styles.body}>
-       <p>Have you ever thought about using AI to solve a <span>Rubik's Cube</span>? Explore how A.I. can master the art of solving this classic puzzle. </p>
+       <p>Have you ever thought about using <span>AI to solve a Rubik's Cube</span>? Explore how A.I. can master the art of solving this classic puzzle. </p>
       </div>
 
     </main>

@@ -7,6 +7,7 @@ import Description from '@/components/Description';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 import Top from '@/components/Top';
+import TextParallax from '@/components/Text-parallax';
 
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
       {/* <Scene /> */}
       <Top />
       <Description />
+      {/* <TextParallax /> */}
       <Section />
       <Footer />
     </main>

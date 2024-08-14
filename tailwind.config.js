@@ -13,6 +13,7 @@ module.exports = {
       },
       fontFamily: {
         'ppneue-montreal': ['PPNeueMontreal', 'sans-serif'],
+        'avant-garde': ['AvantGardeBookBT', 'sans-serif'],
       },
       fontWeight: {
         thin: 100,

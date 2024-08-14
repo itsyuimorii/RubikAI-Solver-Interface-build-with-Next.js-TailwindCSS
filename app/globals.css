@@ -55,15 +55,23 @@
 
 
 @font-face {
-    font-family: 'Avant Garde Book BT';
+    font-family: 'AvantGardeBookBT';
     font-style: normal;
     font-weight: normal;
     src: url('/fonts/AVGARDD_2.woff') format('woff');
 }
 }
+
 body{
     margin: 0px;
     background-color: #0f0f0f;
-    font-family: 'Avant Garde Book BT';
+    font-family: 'AvantGardeBookBT';
 }
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
 
