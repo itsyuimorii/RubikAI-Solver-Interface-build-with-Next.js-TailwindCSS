@@ -24,6 +24,9 @@ module.exports = {
         italic: 400,
         semibolditalic: 600,
       },
+      color: {
+        'custom-gray': '#d8d7cb',
+      }
     },
   },
   plugins: [],

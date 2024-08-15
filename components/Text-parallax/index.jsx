@@ -28,14 +28,14 @@ export default function TexParallax() {
 
     return (
         <main className="overflow-hidden">
-            <div className='h-[10vh]' style={{ backgroundColor: '#afa18f' }} />
+            <div className='h-[10vh] bg-white'/>
 
-            <div ref={container} className='text-white' style={{ backgroundColor: '#afa18f' }}>
+            <div ref={container}  className='bg-white text-custom-gray'>
                 <Slide src={Picture1} direction={'left'} left={"-40%"} progress={scrollYProgress} />
                 <Slide src={Picture2} direction={'right'} left={"-25%"} progress={scrollYProgress} />
                 <Slide src={Picture3} direction={'left'} left={"-75%"} progress={scrollYProgress} />
             </div>
-            <div className='h-[10vh]' style={{ backgroundColor: '#afa18f' }} />
+            <div className='h-[10vh] bg-white'/>
         </main>
     );
 }
