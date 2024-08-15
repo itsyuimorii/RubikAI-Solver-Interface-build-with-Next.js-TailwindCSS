@@ -1,12 +1,11 @@
-// import CameraFeed from "@/components/CameraFeed";
 'use client';
 import { useEffect } from 'react';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import Lenis from 'lenis'
 import Description from '@/components/Description';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
-import Top from '@/components/Top';
+import Intro from '@/components/Intro';
 import TextParallax from '@/components/Text-parallax';
 
 
@@ -28,9 +27,9 @@ export default function Home() {
   return (
     <main className="relative h-screen">
       {/* <Scene /> */}
-      <Top />
+      <Intro />
       <Description />
-      {/* <TextParallax /> */}
+      <TextParallax />
       <Section />
       <Footer />
     </main>

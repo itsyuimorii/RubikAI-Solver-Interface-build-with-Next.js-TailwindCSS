@@ -1,11 +1,14 @@
 'use client'
 import styles from './page.module.scss'
 import { useState } from 'react';  
-import { motion } from 'framer-motion';
 import useMousePosition from '../../app/utils/useMousePosition';
+import Link from 'next/link';
+ 
+import { useScroll, useTransform, motion } from 'framer-motion';
+ 
 
-export default function Top() {
-
+export default function Intro() {
+ 
   const [isHovered, setIsHovered] = useState(false);
   const { x, y } = useMousePosition();
   const size = isHovered ? 400 : 40;
@@ -21,7 +24,7 @@ export default function Top() {
         transition={{ type: "tween", ease: "backOut", duration:0.5}}
       >
           <p onMouseEnter={() => {setIsHovered(true)}} onMouseLeave={() => {setIsHovered(false)}}>
-           Check Jason Mayes's Machine Learning course - with skills that haven't been replaced by A.I (yet) - and learn how to solve a Rubik's Cube with A.I.
+           With skills that haven't been replaced by A.I (yet) - and learn how to solve a Rubik's Cube with A.I.
           </p>
       </motion.div>
 
