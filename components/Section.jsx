@@ -23,9 +23,9 @@ export default function Section() {
                 
                 <Link href="ScanCube" className='text-[3vw] uppercase font-ppneue-montreal font-book italic mix-blend-difference hover:underline'>Start Scan rubik-cube Now?</Link>
                 
-        </div>
+            </div>
             
-        <div className='fixed top-[-10vh] left-0 h-[120vh] w-full'>
+        <div className='fixed top-[-10vh] left-0 h-[90vh] w-full'>
             <motion.div style={{y}} className='relative w-full h-full'>
             <Image src={Background} fill alt="image" style={{objectFit: "cover"}}/>
             </motion.div>
