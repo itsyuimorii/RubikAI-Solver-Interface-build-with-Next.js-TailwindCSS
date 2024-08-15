@@ -35,7 +35,7 @@ export default function TexParallax() {
                 <Slide src={Picture2} direction={'right'} left={"-25%"} progress={scrollYProgress} />
                 <Slide src={Picture3} direction={'left'} left={"-75%"} progress={scrollYProgress} />
             </div>
-            <div className='h-[10vh] bg-white'/>
+            <div className='h-[100vh] bg-white'>asdfasdfasd</div>
         </main>
     );
 }
