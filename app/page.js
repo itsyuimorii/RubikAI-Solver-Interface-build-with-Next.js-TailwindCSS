@@ -28,8 +28,8 @@ export default function Home() {
     <main className="relative h-screen">
       {/* <Scene /> */}
       <Intro />
-      <Description />
-      <TextParallax />
+      {/* <Description /> */}
+      {/* <TextParallax /> */}
       <Section />
       <Footer />
     </main>
