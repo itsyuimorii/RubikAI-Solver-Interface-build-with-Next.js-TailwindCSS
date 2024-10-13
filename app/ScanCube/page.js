@@ -57,34 +57,30 @@ export default function ScanCube() {
         dispatch(setCubeFace(newTiles));
     };
     return (
-        <main className="relative h-screen">
+        <main className="relative h-screen pt-20">
             <div className='flex flex-col items-center justify-start'>
-
-                <div className='flex flex-row items-start gap-10'>
-                    <div className='bg-black'>
+                <div className='flex flex-row items-center gap-10'>
+                    <div className='border-4 border-custom-green'>
                         <CameraFeed modelPath="/models/web_model/model.json" />
                     </div>
-                    <div className='flex flex-col gap-10'>
+                    <div className='flex flex-col gap-20  '>
                         <div>
                             <CubeLayout cubeArray={cubeStateArray} />
                         </div>
-                        <div>
-                            TODO CFOP INSTRUCTIONS HERE
-                        </div>
+
                     </div>
 
                 </div>
                 <div className=''>
-                    TODO message to user
+                    <p className='text-white'>
+                        This AI project focuses on training a deep learning model using RetinaNet Mobile architecture from the COCO dataset to detect specific tiles on the face of a cube. The model is trained on 100 different images and is built in Python. To ensure compatibility with web applications, the trained model is converted into TensorFlow.js, allowing it to run efficiently on the frontend of websites.
+                    </p>
                 </div>
                 <div className="w-full flex justify-center p-40">
-                    <button onClick={handleCapture} className="bg-red-500 text-[1vw] uppercase font-ppneue-montreal font-medium py-4 px-14">Click Button to Capture a Cube surface</button>
+                    <button onClick={handleCapture} className="bg-custom-green1 text-[1vw] uppercase font-ppneue-montreal font-medium py-4 px-14">Click Button to Capture a Cube surface</button>
 
                 </div>
             </div >
-
-
-
             <Footer />
         </main >
     );

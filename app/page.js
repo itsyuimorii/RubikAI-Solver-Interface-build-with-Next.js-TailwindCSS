@@ -2,11 +2,11 @@
 import { useEffect } from 'react';
 // import dynamic from 'next/dynamic';
 import Lenis from 'lenis'
-import Description from '@/components/Description';
+// import Description from '@/components/Description';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 import Intro from '@/components/Intro';
-import TextParallax from '@/components/Text-parallax';
+// import TextParallax from '@/components/Text-parallax';
 
 
 export default function Home() {

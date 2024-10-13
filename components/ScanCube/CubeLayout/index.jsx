@@ -4,7 +4,7 @@ import CubeFace from "@/components/ScanCube/CubeLayout/cubeFace";
 //CubeLayout is a component that takes in a cubeArray prop and maps over it to render a CubeFace component for each face of the cube.
 const CubeLayout = (props) => {
     return ( 
-        <div className="grid grid-cols-4 gap-4 w-96 bg-black">
+        <div className="grid grid-cols-4 gap-4 w-96">
             {props.cubeArray.map((face, index) => {
                 // console.log(index, "index of face")
                 if (index === 0 || index === 5) {

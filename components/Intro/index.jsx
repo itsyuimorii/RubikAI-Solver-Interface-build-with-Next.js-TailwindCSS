@@ -2,9 +2,8 @@
 import styles from './page.module.scss'
 import { useState } from 'react';  
 import useMousePosition from '../../app/utils/useMousePosition';
-import Link from 'next/link';
  
-import { useScroll, useTransform, motion } from 'framer-motion';
+import {  motion } from 'framer-motion';
  
 
 export default function Intro() {
@@ -31,7 +30,6 @@ export default function Intro() {
       <div className={styles.body}>
        <p>Have you ever thought about using <span>AI to solve a Rubik's Cube</span>? Explore how A.I. can master the art of solving this classic puzzle. </p>
       </div>
-
     </main>
   )
 }
