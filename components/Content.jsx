@@ -21,7 +21,9 @@ const Section1 = () => {
 const Section2 = () => {
     return (
         <div className='flex justify-between items-end'>
-            <h1 className='font-ppneue-montreal font-medium text-white text-[14vw] leading-[0.8] mt-10'>AI Rubik Cube </h1>
+        <h1 className='font-ppneue-montreal font-medium text-white text-[14vw] leading-[0.8] mt-10'>
+        AI Rubik Cube
+            </h1>
             <p>©copyright</p>
         </div>
     )

@@ -24,10 +24,11 @@ module.exports = {
         italic: 400,
         semibolditalic: 600,
       },
-      color: {
+      colors: {
         'custom-gray': '#d8d7cb',
-      }
+        'custom-green': '#98ec39',
+      },
     },
+    plugins: [],
   },
-  plugins: [],
 };
