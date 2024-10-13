@@ -23,7 +23,7 @@ export default function ScanCube() {
 
     const handleCapture = () => {
         const { predictionsArray } = store.getState().predictions;
-        // console.log('unsorted', predictionsArray);
+        console.log('unsorted', predictionsArray);
 
 
         const marginOfError = 30; // Adjust this margin as needed
@@ -63,21 +63,25 @@ export default function ScanCube() {
                     <div className='border-4 border-custom-green'>
                         <CameraFeed modelPath="/models/web_model/model.json" />
                     </div>
-                    <div className='flex flex-col gap-20  '>
+                    <div className='flex flex-col gap-20'>
                         <div>
                             <CubeLayout cubeArray={cubeStateArray} />
                         </div>
-
                     </div>
 
                 </div>
                 <div className=''>
                     <p className='text-white'>
-                        This AI project focuses on training a deep learning model using RetinaNet Mobile architecture from the COCO dataset to detect specific tiles on the face of a cube. The model is trained on 100 different images and is built in Python. To ensure compatibility with web applications, the trained model is converted into TensorFlow.js, allowing it to run efficiently on the frontend of websites.
+
                     </p>
                 </div>
-                <div className="w-full flex justify-center p-40">
-                    <button onClick={handleCapture} className="bg-custom-green1 text-[1vw] uppercase font-ppneue-montreal font-medium py-4 px-14">Click Button to Capture a Cube surface</button>
+                <div className="w-full flex justify-center p-32">
+                    <button onclick={handleCapture} className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-xs uppercase font-ppneue-montreal font-  text-gray-900 rounded-lg group bg-gradient-to-br bg-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800">
+                        <span class="relative px-6 py-3.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                            Click Button to Capture a Cube surface
+                        </span>
+                    </button>
+
 
                 </div>
             </div >
