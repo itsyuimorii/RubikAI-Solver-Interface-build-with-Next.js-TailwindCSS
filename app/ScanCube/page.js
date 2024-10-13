@@ -11,7 +11,6 @@ import CubeLayout from '@/components/ScanCube/CubeLayout';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCubeFace } from '@/components/Store/cubeStateReducer';
 import store from '@/components/Store/store';
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function ScanCube() {
     //make an array of 6 elements, each with 9 null values
@@ -76,7 +75,7 @@ export default function ScanCube() {
                     </p>
                 </div>
                 <div className="w-full flex justify-center p-32">
-                    <button onclick={handleCapture} className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-xs uppercase font-ppneue-montreal font-  text-gray-900 rounded-lg group bg-gradient-to-br bg-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800">
+                    <button onClik={handleCapture} className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-xs uppercase font-ppneue-montreal font-  text-gray-900 rounded-lg group bg-gradient-to-br bg-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800">
                         <span class="relative px-6 py-3.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                             Click Button to Capture a Cube surface
                         </span>
