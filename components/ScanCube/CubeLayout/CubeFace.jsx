@@ -1,7 +1,7 @@
 
 const tileColor = {
     white_tile: 'bg-white',
-    red_tile: 'bg-red-500',
+    red_tile:  red_tile,
     green_tile: 'bg-green-500',
     blue_tile: 'bg-blue-500',
     orange_tile: 'bg-orange-500',

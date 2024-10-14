@@ -11,10 +11,12 @@ import CubeLayout from '@/components/ScanCube/CubeLayout';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCubeFace } from '@/components/Store/cubeStateReducer';
 import store from '@/components/Store/store';
+import { INSTRUCTION_MESSAGES } from '@/components/constant';
 
 export default function ScanCube() {
     //make an array of 6 elements, each with 9 null values
     const { cubeStateArray } = useSelector(state => state.cubeState);
+    const { message } = useSelector(state => state.message);
     const dispatch = useDispatch();
 
 
@@ -22,8 +24,8 @@ export default function ScanCube() {
 
     const handleCapture = () => {
         const { predictionsArray } = store.getState().predictions;
-        console.log('unsorted', predictionsArray);
 
+        // console.log('unsorted', predictionsArray);
 
         const marginOfError = 30; // Adjust this margin as needed
         let sortedPredictionsArray = [...predictionsArray].sort((firstTile, secondTile) => {
@@ -35,8 +37,7 @@ export default function ScanCube() {
             // Otherwise, sort by y
             return yDiff;
         });
-        console.log("Click Button To Capture Surface => Sorted", sortedPredictionsArray);
-
+        // console.log("Click Button To Capture Surface => Sorted", sortedPredictionsArray);
 
         const faceIndex = 0;
         //TODO validate predictions
@@ -44,16 +45,20 @@ export default function ScanCube() {
         // 2. ensure that only 9 tiles is visible
         // 3. (optional all 9 tiles are within the face detetion)
         let newTiles = sortedPredictionsArray.map(prediction => prediction.class);
-        // TODO there should only be 1 face here
+        //TODO there should only be 1 face here
         const faces = newTiles.filter(tile =>
             tile.includes('face'));
 
-        // TODO validate exactly 9 tiles are visible
+        //TODO validate exactly 9 tiles are visible
         newTiles = newTiles.filter(tile => tile.includes('tile'));
-        console.log('newTiles', newTiles);
-        console.log('faces', faces);
-        console.log('newTiles', newTiles);
+        // console.log('newTiles', newTiles);
+        // console.log('faces', faces);
+        // console.log('newTiles', newTiles);
         dispatch(setCubeFace(newTiles));
+
+        //TODO dispatch message
+        dispatch(setMessage(INSTRUCTION_MESSAGES[faceIndex]));
+
     };
     return (
         <main className="relative h-screen pt-20">
@@ -70,18 +75,16 @@ export default function ScanCube() {
 
                 </div>
                 <div className=''>
-                    <p className='text-white'>
-
+                    <p className='uppercase font-ppneue-montreal font-thin text-xs text-gray-500'>
+                        message: {message}
                     </p>
                 </div>
                 <div className="w-full flex justify-center p-32">
-                    <button onClik={handleCapture} className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-xs uppercase font-ppneue-montreal font-  text-gray-900 rounded-lg group bg-gradient-to-br bg-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800">
-                        <span class="relative px-6 py-3.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                    <button onClick={handleCapture} className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-xs uppercase font-ppneue-montreal font-light *:text-gray-900 rounded-lg group bg-gradient-to-br bg-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800">
+                        <span className="relative px-6 py-3.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                             Click Button to Capture a Cube surface
                         </span>
                     </button>
-
-
                 </div>
             </div >
             <Footer />

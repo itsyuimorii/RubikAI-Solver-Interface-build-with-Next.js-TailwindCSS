@@ -27,6 +27,12 @@ module.exports = {
       colors: {
         'custom-gray': '#d8d7cb',
         'custom-green': '#98ec39',
+        'white_tile': '#f5f5f5',
+        'red_tile': '#f28b82',
+        'green_tile': '#a7d7a8',
+        'blue_tile': '#aecbfa',
+        'orange_tile': '#ffcc80',
+        'yellow_tile': '#fff475',
       },
     },
     plugins: [],
