@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    message: '',
+    infoMessage: '',
     errorMessage: '',
+    successMessage: '',
 };
 
 const messageSlice = createSlice({
@@ -10,13 +11,16 @@ const messageSlice = createSlice({
     initialState,
     reducers: {
         setMessage: (state, action) => {
-            state.message = action.payload;
+            state.infoMessage = action.payload;
         },
         setErrorMessage: (state, action) => {
             state.errorMessage = action.payload;
-        }
-    }
+        },
+        setSuccessMessage: (state, action) => {
+            state.successMessage = action.payload;
+        },
+    },
 });
 
-export const { setMessage, setErrorMessage } = messageSlice.actions;
+export const { setMessage, setErrorMessage, setSuccessMessage } = messageSlice.actions;
 export const messageReducer = messageSlice.reducer;

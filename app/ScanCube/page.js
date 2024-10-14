@@ -11,7 +11,7 @@ import CameraFeed from "@/components/CameraFeed";
 import CubeLayout from '@/components/ScanCube/CubeLayout';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCubeFace } from '@/components/Store/cubeStateReducer';
-import { setMessage, setErrorMessage } from '@/components/Store/messageReducer';
+import { setMessage, setErrorMessage, setSuccessMessage } from '@/components/Store/messageReducer';
 import store from '@/components/Store/store';
 import { CUBE_ROTATION_INSTRUCTIONS, CUBE_FACE_COLOR_ORDER, CUBE_CENTER_TILE_INDEX } from '@/components/constant';
 
@@ -19,7 +19,8 @@ export default function ScanCube() {
     //make an array of 6 elements, each with 9 null values
     const { cubeStateArray } = useSelector(state => state.cubeState);
     const [faceIndex, setFaceIndex] = useState(0);
-    const { message, errorMessage } = useSelector(state => state.messages);
+    const { infoMessage, errorMessage, setS2uccessMessage } = useSelector(state => state.message);
+
 
     const dispatch = useDispatch();
     // console.log('cubeStateArray', cubeStateArray);
@@ -54,17 +55,18 @@ export default function ScanCube() {
         const faces = newTiles.filter(tile =>
             tile.includes('face'));
 
+        console.log(faces)
+
         const centerTile = newTiles[CUBE_CENTER_TILE_INDEX];
         const expectTileOrder = CUBE_FACE_COLOR_ORDER[faceIndex];
-        console.log(centerTile)
-        console.log(expectTileOrder)
+        // console.log(centerTile)
+        // console.log(expectTileOrder)
 
         if (centerTile !== expectTileOrder) {
-            dispatch(setErrorMessage('The center tile does not match the expected order. Please rotate the cube and try again.'))
+            dispatch(setErrorMessage('⛔️ The center tile does not match the expected order. Please rotate the cube and try again.'))
+            return;
         }
 
-
-        //TODO validate exactly 9 tiles are visible
         newTiles = newTiles.filter(tile => tile.includes('tile'));
         // console.log('newTiles', newTiles);
         // console.log('faces', faces);
@@ -74,6 +76,8 @@ export default function ScanCube() {
         //Increment the Index each time I run the handleCapture function
         setFaceIndex(prevIndex => prevIndex + 1);
         dispatch(setMessage(CUBE_ROTATION_INSTRUCTIONS[faceIndex + 1]));
+        dispatch(setErrorMessage(''))
+        // dispatch(setSuccessMessage('Congrats! You have successfully captured the cube face.'))
     };
 
 
@@ -99,11 +103,11 @@ export default function ScanCube() {
                 <div className='pt-4'>
                     <p className='pb-2 uppercase font-ppneue-montreal font-thin text-xs text-gray-500'>
                         🕹️ INSTRUCTION_MESSAGES:<br />
-                        {message}<br />
+                        {infoMessage}<br />
 
                     </p>
-                    {/* place error message */}
-                    {message}
+                    <p className='pb-2 uppercase font-ppneue-montreal font-thin text-xs text-red-500'>
+                        {errorMessage}</p>
                     {/* TODO: disable the click button, but has to move the  */}
                     <p className='pt-2 font-ppneue-montreal font-thin text-xs text-gray-500'>
                         🔧 Please follow the instruction to place the cube</p>
@@ -117,6 +121,7 @@ export default function ScanCube() {
 
                     </button>
                     {/* TODO: Reset button */}
+
 
                 </div>
             </div >
