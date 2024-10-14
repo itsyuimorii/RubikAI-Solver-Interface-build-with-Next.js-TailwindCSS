@@ -1,4 +1,3 @@
-//Purpose: this file is create for when user click the button, it will capture the prediction of the cube surface and store into the 2d collections of the cubeArray
 import { createSlice } from '@reduxjs/toolkit';
 
 const WHITE_INDEX = 0;
@@ -17,16 +16,17 @@ const TILES_TO_INDEX = {
     "yellow_tile": YELLOW_INDEX,
 };
 
-const CENTER_TILE_INDEX = 4
+const CENTER_TILE_INDEX = 4;
 
 const initialState = {
     cubeStateArray: [
-    [null, null, null, null, "white_tile", null, null, null, null],
-    [null, null, null, null, "orange_tile", null, null, null, null],
-    [null, null, null, null, "green_tile", null, null, null, null],
-    [null, null, null, null, "red_tile", null, null, null, null],
-    [null, null, null, null, "blue_tile", null, null, null, null],
-    [null, null, null, null, "yellow_tile", null, null, null, null],],
+        [null, null, null, null, "white_tile", null, null, null, null],
+        [null, null, null, null, "orange_tile", null, null, null, null],
+        [null, null, null, null, "green_tile", null, null, null, null],
+        [null, null, null, null, "red_tile", null, null, null, null],
+        [null, null, null, null, "blue_tile", null, null, null, null],
+        [null, null, null, null, "yellow_tile", null, null, null, null],
+    ],
 };
 
 const cubeStateSlice = createSlice({
@@ -35,8 +35,17 @@ const cubeStateSlice = createSlice({
     reducers: {
         setCubeFace: (state, action) => {
             const colorMiddleTile = action.payload[CENTER_TILE_INDEX];
-            const foundIndex = TILES_TO_INDEX[colorMiddleTile]
-            state.cubeStateArray[foundIndex] = action.payload;
+            const foundIndex = TILES_TO_INDEX[colorMiddleTile];
+
+            // Check if the tile corresponds to a valid index in the cube
+            if (foundIndex !== undefined) {
+                // Create a new array to avoid direct mutation of state
+                state.cubeStateArray = state.cubeStateArray.map((face, index) =>
+                    index === foundIndex ? action.payload : face
+                );
+            } else {
+                console.error(`Invalid middle tile color: ${colorMiddleTile}`);
+            }
         },
     },
 });
