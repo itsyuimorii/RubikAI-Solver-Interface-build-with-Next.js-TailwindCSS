@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { CUBE_CENTER_TILE_INDEX } from '../constant.jsx';
 
 const WHITE_INDEX = 0;
 const ORANGE_INDEX = 1;
@@ -16,7 +17,6 @@ const TILES_TO_INDEX = {
     "yellow_tile": YELLOW_INDEX,
 };
 
-const CENTER_TILE_INDEX = 4;
 
 const initialState = {
     cubeStateArray: [
@@ -34,7 +34,7 @@ const cubeStateSlice = createSlice({
     initialState,
     reducers: {
         setCubeFace: (state, action) => {
-            const colorMiddleTile = action.payload[CENTER_TILE_INDEX];
+            const colorMiddleTile = action.payload[CUBE_CENTER_TILE_INDEX];
             const foundIndex = TILES_TO_INDEX[colorMiddleTile];
 
             // Check if the tile corresponds to a valid index in the cube
