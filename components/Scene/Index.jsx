@@ -1,13 +1,12 @@
 'use client';
 
-import React from 'react';
 import { Canvas } from '@react-three/fiber'
 import { Environment } from '@react-three/drei'
 import Model from '@/components/Scene/model';
 import { useScroll, useTransform, motion } from 'framer-motion';
-import { useRef } from 'react';
+import React, {useRef}  from 'react';
 
-export default function index() {
+export default function Index() {
     const container = useRef();
     const { scrollYProgress } = useScroll({
       target: container,

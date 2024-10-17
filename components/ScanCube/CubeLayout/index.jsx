@@ -1,5 +1,5 @@
 "use client"
-import CubeFace from "@/components/ScanCube/CubeLayout/cubeFace";
+import CubeFace from "@/components/ScanCube/CubeLayout/CubeFace";
 
 //CubeLayout is a component that takes in a cubeArray prop and maps over it to render a CubeFace component for each face of the cube.
 const CubeLayout = (props) => {
