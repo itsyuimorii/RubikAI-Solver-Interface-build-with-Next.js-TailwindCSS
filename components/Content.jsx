@@ -24,7 +24,7 @@ const SectionDown = () => {
         <h1 className='font-ppneue-montreal font-medium text-white text-[14vw] leading-[0.8] mt-10'>
         AI Rubik Cube
             </h1>
-            <p className='mb-2 uppercase font-ppneue-montreal    font-thin text-custom-green'>©copyright</p>
+            <p className='text-[1vw] mb-2 uppercase font-ppneue-montreal font-thin text-custom-green'>Copyright (c) 2024 yuimorii</p>
         </div>
     )
 }

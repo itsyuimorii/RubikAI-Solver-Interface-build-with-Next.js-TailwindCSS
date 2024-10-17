@@ -4,11 +4,9 @@ WORKDIR /app
 
 COPY package.json ./
 
-RUN yarn 
+RUN yarn
 
 COPY . ./
-
-COPY ./public/models ./public/models
 
 RUN yarn build
 

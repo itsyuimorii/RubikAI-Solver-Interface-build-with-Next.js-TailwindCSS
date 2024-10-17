@@ -78,7 +78,7 @@ var stateMapping = {
 ### Useful links
 
 https://gltf.pmnd.rs/
-
 https://drei.pmnd.rs/?path=/story/staging-environment--environment-st-1&args=preset:forest
 
-https://gltf.pmnd.rs/
+Use .npmrc if you need to customize npm settings for your project.
+Use .nvmrc if you want to specify the Node.js version for your project.
