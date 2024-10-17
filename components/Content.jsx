@@ -33,14 +33,14 @@ const Nav = () => {
     return (
         <div className='flex shrink-0 gap-20'>
             <div className='flex flex-col gap-2'>
-                <h3 className='mb-2 uppercase font-ppneue-montreal    font-thin text-custom-green'>Home</h3>
-               <Link className='text-white  font-ppneue-montreal    font-thin' href="/about">About</Link>
-               <Link  className='text-white  font-ppneue-montreal    font-thin' href="/about">Playground</Link>
-               <Link  className='text-white  font-ppneue-montreal    font-thin' href="/about">Tools</Link>
-               <Link  className='text-white  font-ppneue-montreal    font-thin' href="/about">References</Link>
+                <h3 className='mb-2 uppercase font-ppneue-montreal font-thin text-custom-green'>Home</h3>
+               <Link href="#" className='text-white  font-ppneue-montreal font-thin'>About</Link>
+               <Link href="#" className='text-white  font-ppneue-montreal font-thin'>Playground</Link>
+               <Link href="#" className='text-white  font-ppneue-montreal font-thin'>Tools</Link>
+               <Link href="#" className='text-white  font-ppneue-montreal font-thin'>References</Link>
             </div>
             <div className='flex flex-col gap-2'>
-                <h3 className='mb-2 uppercase font-ppneue-montreal    font-thin text-custom-green'>Github</h3>
+                <Link href="https://www.tensorflow.org/js" className='mb-2 uppercase font-ppneue-montreal font-thin text-custom-green'>Github</Link>
           
             </div>
         </div>

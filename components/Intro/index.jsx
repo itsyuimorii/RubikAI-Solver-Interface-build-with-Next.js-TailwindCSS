@@ -23,7 +23,7 @@ export default function Intro() {
         transition={{ type: "tween", ease: "backOut", duration:0.5}}
       >
           <p onMouseEnter={() => {setIsHovered(true)}} onMouseLeave={() => {setIsHovered(false)}}>
-           With skills that haven&apos;t been replaced by A.I (yet) - and learn how to solve a Rubi&apos;s Cube with A.I.
+           With skills that haven&apos;t been replaced by A.I (yet) - and learn how to solve a Rubik&apos;s Cube with A.I.
           </p>
       </motion.div>
 
