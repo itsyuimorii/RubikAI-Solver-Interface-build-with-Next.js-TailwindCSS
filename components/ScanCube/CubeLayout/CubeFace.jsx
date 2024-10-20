@@ -6,7 +6,6 @@ const tileColor = {
     green_tile: 'bg-lime-300',
     orange_tile: 'bg-orange-tile',
     yellow_tile: 'bg-yellow-tile',
-   
 }
 
 // CubeFace component is used to display the cube face with 3x3 grid layout.                 

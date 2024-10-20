@@ -100,10 +100,11 @@ export default function ScanCube() {
                     </div>
 
                 </div>
-                <div className='pt-4'>
-                    <p className='pb-2 uppercase font-ppneue-montreal font-thin text-xs text-gray-500'>
+                <div className='pt-4 p-10'>
+                    <p className='pb-2 uppercase font-ppneue-montreal font-thin text-sm text-gray-500'>
                         🕹️ INSTRUCTION_MESSAGES:<br />
-                        {infoMessage}<br />
+                        <span className='pb-2 uppercase font-ppneue-montreal font-thin text-xs text-gray-500'>{infoMessage}<br /></span>
+
 
                     </p>
                     <p className='pb-2 uppercase font-ppneue-montreal font-thin text-xs text-red-500'>
