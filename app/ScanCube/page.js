@@ -22,7 +22,6 @@ export default function ScanCube() {
     const [faceIndex, setFaceIndex] = useState(0);
     const { infoMessage, errorMessage } = useSelector(state => state.message);
 
-
     const dispatch = useDispatch();
     // console.log('cubeStateArray', cubeStateArray);
 
@@ -34,7 +33,7 @@ export default function ScanCube() {
 
     const handleCapture = () => {
         const { predictionsArray } = store.getState().predictions;
-        // console.log('unsorted', predictionsArray);
+        console.log('unsorted', predictionsArray);
         const marginOfError = 30; // Adjust this margin as needed
         let sortedPredictionsArray = [...predictionsArray].sort((firstTile, secondTile) => {
             const yDiff = firstTile.bbox[1] - secondTile.bbox[1];
@@ -45,32 +44,37 @@ export default function ScanCube() {
             // Otherwise, sort by y
             return yDiff;
         });
-        // console.log("Click Button To Capture Surface => Sorted", sortedPredictionsArray);
+        console.log("Click Button To Capture Surface => Sorted", sortedPredictionsArray);
 
         //TODO validate predictions
         // 1. ensure only 1 face is visible
         // 2. ensure that only 9 tiles is visible
         // 3. (optional all 9 tiles are within the face detetion)
         let newTiles = sortedPredictionsArray.map(prediction => prediction.class);
-        //TODO there should only be 1 face here
+        // console.log('old Tile including the face ', newTiles);
+
+
         const faces = newTiles.filter(tile =>
             tile.includes('face'));
-
-        console.log(faces)
+        //then the newTile array will be filtered to only include the tiles that contain the word "tile"
+        newTiles = newTiles.filter(tile => tile.includes('tile'));
+        // console.log('new newTiles without face', newTiles);
+        // console.log('faces', faces);
+        //then the center piece will be in the INDEX 4 of the newTiles array
 
         const centerTile = newTiles[CUBE_CENTER_TILE_INDEX];
         const expectTileOrder = CUBE_FACE_COLOR_ORDER[faceIndex];
-        // console.log(centerTile)
-        // console.log(expectTileOrder)
+        console.log('centerTile', centerTile)
+        console.log(expectTileOrder)
 
         if (centerTile !== expectTileOrder) {
             dispatch(setErrorMessage('⛔️ The center tile does not match the expected order. Please rotate the cube and try again.'))
             return;
         }
 
-        newTiles = newTiles.filter(tile => tile.includes('tile'));
-        // console.log('newTiles', newTiles);
-        // console.log('faces', faces);
+
+        console.log('newTiles', newTiles);
+
 
         dispatch(setCubeFace(newTiles));
 

@@ -54,6 +54,7 @@ const CameraFeed = ({ modelPath }) => {
       const predictions = await model.executeAsync(inputTensor);
 
       if (predictions.length === 0) {
+        
         return new Promise(resolve => {
           requestAnimationFrame(() => {
             resolve(detectFrame(video, model));
@@ -69,6 +70,7 @@ const CameraFeed = ({ modelPath }) => {
       // Assuming only one batch, otherwise iterate over batches
       console.assert(boxes.length === 1);
 
+      // console.log(boxes[0]);
       let predictionsArray = boxes[0].map((box, i) => ({
         bbox: [
           box[1], // Adjust x
@@ -82,8 +84,42 @@ const CameraFeed = ({ modelPath }) => {
         score: scores[0][i]
       }));
 
+
+      // let filtered = predictionsArray.filter(item => (item.score > 0.9));
+      // console.log(filtered);
+
       predictionsArray = predictionsArray.filter(prediction => prediction.score > 0.85);
 
+      // let changed = true;
+
+      // while (changed) {
+      //   let str1 = predictionsArray.toString();
+      //   predictionsArray.sort((a, b) => {
+      //     let midPointAX = a.bbox[0] + (a.bbox[2] / 2);
+      //     let midPointBX = b.bbox[0] + (b.bbox[2] / 2);
+
+      //     return midPointBX - midPointAX;
+      //   });
+      //   let str2 = predictionsArray.toString();
+      //   if (str1 === str2) {
+      //     changed = false;
+      //   }
+      // }
+
+      // changed = true;
+      // while (changed) {
+      //   let str1 = predictionsArray.toString();
+      //   predictionsArray.sort((a, b) => {
+      //     let midPointAY = a.bbox[1] + (a.bbox[3] / 2);
+      //     let midPointBY = b.bbox[1] + (b.bbox[3] / 2);
+
+      //     return midPointBY - midPointAY;
+      //   });
+      //   let str2 = predictionsArray.toString();
+      //   if (str1 === str2) {
+      //     changed = false;
+      //   }
+      // }
       // console.log(predictionsArray);
 
       dispatch(updatePredictions(predictionsArray));

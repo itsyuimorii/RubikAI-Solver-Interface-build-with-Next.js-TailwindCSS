@@ -1,6 +1,3 @@
-
-
-
 export const CUBE_ROTATION_INSTRUCTIONS = [
     ' Step 00: Holding the Cube, *Position*: Hold the cube with the 🟡 yellow face on top and the ⚪️ white face on the bottom, so that the 🟠 orange face is now facing the camera',
     
@@ -18,6 +15,6 @@ export const CUBE_ROTATION_INSTRUCTIONS = [
 
 export const CUBE_CENTER_TILE_INDEX = 4;   
 
-export const CUBE_FACE_COLOR_ORDER = ['orange_tile', 'green_tile', 'red_tile', 'blue_tile', 'white_tile', 'yellow_tile'];   
+export const CUBE_FACE_COLOR_ORDER = ['orange_tile', 'green_tile', 'red_tile', 'blue_tile', 'yellow_tile','white_tile'];   
 
  

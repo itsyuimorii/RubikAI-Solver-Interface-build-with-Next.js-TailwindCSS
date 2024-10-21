@@ -17,7 +17,6 @@ const TILES_TO_INDEX = {
     "yellow_tile": YELLOW_INDEX,
 };
 
-
 const initialState = {
     cubeStateArray: [
         [null, null, null, null, "white_tile", null, null, null, null],
