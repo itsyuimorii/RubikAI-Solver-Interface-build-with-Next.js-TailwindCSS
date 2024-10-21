@@ -11,15 +11,16 @@ import CameraFeed from "@/components/CameraFeed";
 import CubeLayout from '@/components/ScanCube/CubeLayout';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCubeFace } from '@/components/Store/cubeStateReducer';
-import { setMessage, setErrorMessage, setSuccessMessage } from '@/components/Store/messageReducer';
+import { setMessage, setErrorMessage } from '@/components/Store/messageReducer';
 import store from '@/components/Store/store';
+import Markdown from 'react-markdown'
 import { CUBE_ROTATION_INSTRUCTIONS, CUBE_FACE_COLOR_ORDER, CUBE_CENTER_TILE_INDEX } from '@/components/constant';
 
 export default function ScanCube() {
     //make an array of 6 elements, each with 9 null values
     const { cubeStateArray } = useSelector(state => state.cubeState);
     const [faceIndex, setFaceIndex] = useState(0);
-    const { infoMessage, errorMessage, setS2uccessMessage } = useSelector(state => state.message);
+    const { infoMessage, errorMessage } = useSelector(state => state.message);
 
 
     const dispatch = useDispatch();
@@ -100,18 +101,13 @@ export default function ScanCube() {
                     </div>
 
                 </div>
-                <div className='pt-4 p-10'>
-                    <p className='pb-2 uppercase font-ppneue-montreal font-thin text-sm text-gray-500'>
+                <div className='pt-4'>
+                    <div className='pb-2 uppercase font-thin text-sm text-white'>
                         🕹️ INSTRUCTION_MESSAGES:<br />
-                        <span className='pb-2 uppercase font-ppneue-montreal font-thin text-xs text-gray-500'>{infoMessage}<br /></span>
-
-
-                    </p>
-                    <p className='pb-2 uppercase font-ppneue-montreal font-thin text-xs text-red-500'>
-                        {errorMessage}</p>
-                    {/* TODO: disable the click button, but has to move the  */}
-                    <p className='pt-2 font-ppneue-montreal font-thin text-xs text-gray-500'>
-                        🔧 Please follow the instruction to place the cube</p>
+                        <span className='pb-2 uppercase font-thin text-xs text-white'>
+                            <Markdown className='prose'>{infoMessage}</Markdown><br />
+                        </span>
+                    </div>
 
                 </div>
                 <div className="w-full flex justify-center p-24">

@@ -35,6 +35,8 @@ module.exports = {
         'yellow-tile': '#fff475',
       },
     },
-    plugins: [],
+    plugins: [
+      require('@tailwindcss/typography'),
+    ],
   },
 };
